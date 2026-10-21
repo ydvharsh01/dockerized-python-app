@@ -48,7 +48,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.ydvharsh01 }}
-          password: ${{ secrets.8006315671@fam }}
+          password: ${{ secrets.yadavji3386 }}
 
       # NAYA STEP 2: Image ko Docker Hub par upload karna
       - name: Push Image to Docker Hub
