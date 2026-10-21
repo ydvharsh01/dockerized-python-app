@@ -1,30 +1,4 @@
-name: Build Docker Image
-
-# Ye pipeline tab chalega jab bhi 'main' branch par code push hoga
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  build-and-test:
-    runs-on: ubuntu-latest # GitHub humein ek free Linux server dega
-
-    steps:
-      # Step 1: Humara code GitHub se download karo
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      # Step 2: Humari Dockerfile padh kar image build karo
-      - name: Build Docker Image
-        run: docker build -t devops-app-test .
-        
-      # Step 3: Check karo ki image successfully ban gayi ya nahi
-      - name: Test Docker Image
-        run: docker images
-        #adding a step 
-        
-        name: Build Docker Image
+name: Build and Push Docker Image
 
 on:
   push:
@@ -32,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-test:
+  build-and-push:
     runs-on: ubuntu-latest 
 
     steps:
@@ -40,16 +14,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build Docker Image
-        # Yahan image ka naam ab Docker Hub ke format mein hoga
         run: docker build -t yadavharsh01/devops-app:latest .
         
-      # NAYA STEP 1: Docker Hub mein login karna (Secrets ka use karke)
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.yadavharsh01 }}
-          password: ${{ secrets.yadavji3386 }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # NAYA STEP 2: Image ko Docker Hub par upload karna
       - name: Push Image to Docker Hub
         run: docker push yadavharsh01/devops-app:latest
