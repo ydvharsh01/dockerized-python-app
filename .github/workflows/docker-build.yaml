@@ -19,13 +19,10 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.yadavharsh01 }}
-          password: ${{ secrets.yadavji3386 }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Image to Docker Hub
-        run: docker push yadavharsh01/devops-app:latest
-
-        - name: Push Image to Docker Hub
         run: docker push yadavharsh01/devops-app:latest
         
       # Pipeline ko dubara chalane ke liye ek dummy comment
