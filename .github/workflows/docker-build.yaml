@@ -41,7 +41,7 @@ jobs:
 
       - name: Build Docker Image
         # Yahan image ka naam ab Docker Hub ke format mein hoga
-        run: docker build -t AAPKA_DOCKER_USERNAME/devops-app:latest .
+        run: docker build -t yadavharsh01/devops-app:latest .
         
       # NAYA STEP 1: Docker Hub mein login karna (Secrets ka use karke)
       - name: Login to Docker Hub
@@ -52,4 +52,4 @@ jobs:
 
       # NAYA STEP 2: Image ko Docker Hub par upload karna
       - name: Push Image to Docker Hub
-        run: docker push AAPKA_DOCKER_USERNAME/devops-app:latest
+        run: docker push yadavharsh01/devops-app:latest
