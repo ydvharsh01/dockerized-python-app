@@ -24,3 +24,8 @@ jobs:
 
       - name: Push Image to Docker Hub
         run: docker push yadavharsh01/devops-app:latest
+
+        - name: Push Image to Docker Hub
+        run: docker push yadavharsh01/devops-app:latest
+        
+      # Pipeline ko dubara chalane ke liye ek dummy comment
