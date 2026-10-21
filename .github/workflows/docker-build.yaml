@@ -22,3 +22,34 @@ jobs:
       # Step 3: Check karo ki image successfully ban gayi ya nahi
       - name: Test Docker Image
         run: docker images
+        #adding a step 
+        
+        name: Build Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest 
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Build Docker Image
+        # Yahan image ka naam ab Docker Hub ke format mein hoga
+        run: docker build -t AAPKA_DOCKER_USERNAME/devops-app:latest .
+        
+      # NAYA STEP 1: Docker Hub mein login karna (Secrets ka use karke)
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.ydvharsh01 }}
+          password: ${{ secrets.8006315671@fam }}
+
+      # NAYA STEP 2: Image ko Docker Hub par upload karna
+      - name: Push Image to Docker Hub
+        run: docker push AAPKA_DOCKER_USERNAME/devops-app:latest
